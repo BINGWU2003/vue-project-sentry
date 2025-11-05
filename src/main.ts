@@ -7,6 +7,8 @@ import * as Sentry from '@sentry/vue'
 const app = createApp(App)
 if (import.meta.env.VITE_MODE === 'production') {
   console.log('import.meta.env.VITE_SENTRY_DSN', import.meta.env.VITE_SENTRY_DSN)
+  const appVersion = import.meta.env.VITE_APP_VERSION;
+  console.log('appVersion', appVersion)
   // 在这里初始化 Sentry
   Sentry.init({
     app, // 传入 Vue app 实例
@@ -17,7 +19,7 @@ if (import.meta.env.VITE_MODE === 'production') {
       Sentry.browserTracingIntegration({ router }), // 性能追踪
       Sentry.replayIntegration(), // 用户会话重放
     ],
-
+    release: `vue-project-sentry@${appVersion}`, // 示例：'my-vue-project@1.0.2'
     // 性能监控配置
     tracesSampleRate: 1.0, // 生产环境建议调低（例如 0.2）
 
