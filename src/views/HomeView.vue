@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import * as Sentry from '@sentry/vue'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const errorLog = ref<string[]>([])
 
 // 1. 运行时错误 - 调用未定义的函数
@@ -110,6 +112,7 @@ const clearLog = () => {
     <div class="header">
       <h1>🏠 Sentry 错误测试 - 首页</h1>
       <p class="subtitle">点击下方按钮触发不同类型的错误，测试 Sentry 的错误捕获功能</p>
+      <button @click="router.push('/about')">about 页面</button>
     </div>
 
     <div class="test-section">

@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { ref, onMounted, onErrorCaptured } from 'vue'
 import * as Sentry from '@sentry/vue'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const errorCount = ref(0)
 const componentError = ref<string | null>(null)
 const performanceTest = ref(false)
@@ -213,6 +215,7 @@ onMounted(() => {
     <div class="header">
       <h1>ℹ️ Sentry 高级测试 - 关于页面</h1>
       <p class="subtitle">更多复杂场景和边界情况的错误测试</p>
+      <button @click="router.push('/')">home 页面</button>
     </div>
 
     <div class="test-section">
